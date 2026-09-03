@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>무지개 텍스트</title>
+  <style>
+    body {
+      background-color: black;
+      margin: 0;
+      padding: 20px;
+      box-sizing: border-box;
+      overflow-x: hidden;
+    }
+
+    .rainbow-text {
+      text-align: justify;
+      text-align-last: justify;
+    }
+
+    .rainbow-text span {
+      font-size: 24px;
+      font-weight: bold;
+      animation: blink 1s infinite;
+    }
+
+    .rainbow-text span:nth-child(7n+1) { color: red; }
+    .rainbow-text span:nth-child(7n+2) { color: orange; }
+    .rainbow-text span:nth-child(7n+3) { color: yellow; }
+    .rainbow-text span:nth-child(7n+4) { color: green; }
+    .rainbow-text span:nth-child(7n+5) { color: blue; }
+    .rainbow-text span:nth-child(7n+6) { color: navy; }
+    .rainbow-text span:nth-child(7n+7) { color: purple; }
+
+    @keyframes blink {
+      0%, 49% { opacity: 1; }
+      50%, 100% { opacity: 0; }
+    }
+  </style>
+</head>
+<body>
+  <div class="rainbow-text" id="container"></div>
+
+  <script>
+    // 여기에 원하는 문장(들)만 적으면 됨
+    const sentences = [
+      "하늘이 너무 예뻐 ",
+      "하늘이 너무 예뻐 ",
+      "하늘이 너무 예뻐 ",
+      "하늘이 너무 예뻐 ",
+      "하늘이 너무 예뻐 ",
+      "하늘이 너무 예뻐 ",
+      "하늘이 너무 예뻐 "
+    ];
+
+    const container = document.getElementById('container');
+
+    // 화면이 꽉 찰 때까지 문장을 반복해서 채움
+    let i = 0;
+    while (container.scrollHeight < window.innerHeight * 2) {
+      const span = document.createElement('span');
+      span.textContent = sentences[i % sentences.length];
+      container.appendChild(span);
+      i++;
+    }
+  </script>
+</body>
+</html>
